@@ -29,9 +29,12 @@ model Bag {
 }
 
 model Item {
-  id        String   @id @default(cuid())
-  name      String
-  bag       Bag      @relation(fields: [bagId], references: [id])
-  bagId     String  
-  createdAt DateTime @default(now())
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  quantity    Int      @default(1)
+  category    String?
+  bagId       String
+  bag         Bag      @relation(fields: [bagId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
 }
